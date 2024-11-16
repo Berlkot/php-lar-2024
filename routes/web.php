@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ArticleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +18,12 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', function () {
-        return view('layout');
-    });
+Route::get('/auth/signup', action: [AuthController::class, 'signup']);
+Route::post('/auth/register', action: [AuthController::class, 'register']);
+Route::get('/', action: [MainController::class, 'index']);
+Route::get('/gallery/{img}/{name}', function($img, $name) {
+    return view('main.gallery', ['img'=>$img, 'name'=>$name]);
+});
 Route::get('/about', function() {
     return view('main.about');
 });
@@ -31,3 +36,4 @@ Route::get('/contacts', function() {
     return view('main.contact', ['data'=> $data]);
 });
 
+Route::resource('articles', ArticleController::class);
