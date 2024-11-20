@@ -1,5 +1,11 @@
 @extends('layout')
 @section('content')
+@if (session('status'))
+<div class="alert alert-success" role="alert">
+    {{ session('status') }}
+</div>
+
+@endif
     <table class="table">
     <thead>
         <tr>
@@ -14,7 +20,7 @@
         @foreach ($articles as $article)
             <tr>
             <th scope="row">{{ $article->date }}</th>
-            <td>{{ $article->name }}</td>
+            <td><a href="/articles/{{$article->id}}">{{ $article->name }}</a></td>
             <td>{{$article->desc}}</td>
             <td>
             @php
@@ -26,4 +32,5 @@
         @endforeach
     </tbody>
     </table>
+    {{$articles->links()}}
 @endsection
