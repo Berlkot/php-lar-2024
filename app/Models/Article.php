@@ -16,4 +16,8 @@ class Article extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function delete(){
+        $this->comments()->delete();
+        return parent::delete();
+    }
 }
