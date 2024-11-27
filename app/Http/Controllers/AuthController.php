@@ -24,6 +24,7 @@ class AuthController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        $user->role = 'reader';
         $user->save();
         $user->remember_token = $user->createToken('myapptoken')->plainTextToken;
         $user->save();
