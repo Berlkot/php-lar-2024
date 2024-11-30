@@ -19,12 +19,14 @@
     <h5 class="card-title">{{ $article->name }}</h5>
     <p class="card-text">{{ $article->desc }}</p>
     <div class="d-flex">
+      @can('update')
       <a href="/articles/{{$article->id}}/edit" class="btn btn-primary">Edit article</a>
       <form action="/articles/{{$article->id}}" method="POST">
         @method("DELETE")
         @csrf
         <button type="submit" class="btn btn-danger mx-1">Delete article</button>
       </form>
+      @endcan
     </div>
   </div>
   <h4 class="text-center">Add Comment</h4>

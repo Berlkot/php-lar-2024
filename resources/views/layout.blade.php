@@ -29,9 +29,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/articles">Статьи</a>
                     </li>
+                    @can('create')
                     <li class="nav-item">
                         <a class="nav-link" href="/articles/create">Создать статью</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/comment/index">Комментарии</a>
+                    </li>
+                    @endcan
                     <li class="nav-item">
                         <a class="nav-link" href="/contacts">Контакты</a>
                     </li>
