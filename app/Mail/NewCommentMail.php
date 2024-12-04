@@ -1,53 +1,48 @@
 <?php
-
 namespace App\Mail;
-
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Attachment;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Address;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Comment;
-use App\Models\Article;
-use Illuminate\Mail\Mailables\Address;
-
 class NewCommentMail extends Mailable
 {
     use Queueable, SerializesModels;
-
     /**
      * Create a new message instance.
      */
-    public function __construct(public Comment $comment,
-    public Article $article)
+    public function __construct(public Comment $comment, public $article_name)
     {
         
     }
-
     /**
      * Get the message envelope.
      */
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME')), 
+            from: new Address(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME')),
             subject: 'New Comment Mail',
         );
     }
-
     /**
      * Get the message content definition.
      */
     public function content(): Content
     {
         return new Content(
-            view: 'mail.newcomment',
-            with: ['comment' => $this->comment->desc, 'article' => $this->article->name]
+            markdown: 'mail.newcomment',
+            with:[
+                'comment'=>$this->comment,
+                'article_name'=>$this->article_name,
+                'url'=>'http://127.0.0.1:3000/comment/'.$this->comment->id.'/accept',
+            ]
         );
     }
-
     /**
      * Get the attachments for the message.
      *
@@ -56,7 +51,7 @@ class NewCommentMail extends Mailable
     public function attachments(): array
     {
         return [
-            Attachment::fromPath(public_path().'/preview.jpg'),
+            Attachment::fromPath(public_path().'/preview.jpg')
         ];
     }
 }
