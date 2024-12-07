@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Events;
+
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -8,9 +10,11 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Article;
+
 class NewArticleEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
     /**
      * Create a new event instance.
      */
@@ -18,6 +22,7 @@ class NewArticleEvent implements ShouldBroadcast
     {
         
     }
+
     /**
      * Get the channels the event should broadcast on.
      *
@@ -29,6 +34,7 @@ class NewArticleEvent implements ShouldBroadcast
             new Channel('test'),
         ];
     }
+
     public function BroadcastWith(): array
     {
         return ['article'=>$this->article];

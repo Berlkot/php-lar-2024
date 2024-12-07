@@ -6,6 +6,7 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use Gate;
+use App\Events\NewArticleEvent;
 
 class ArticleController extends Controller
 {
@@ -44,8 +45,8 @@ class ArticleController extends Controller
         $article->user_id = 1;
         if ($article->save()){
             NewArticleEvent::dispatch($article);
+            return redirect()->route('articles.index');
         }
-        return redirect()->route('articles.index');
     }
 
     /**
