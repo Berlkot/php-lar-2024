@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\VeryLongJob;
+use App\Notifications\NewCommentNotify;
 use Auth;
 use Gate;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 
 use App\Mail\NewCommentMail;
+use Notification;
+use App\Models\User;
 
 class CommentController extends Controller
 {
@@ -19,7 +22,10 @@ class CommentController extends Controller
     }
     public function accept(Comment $comment) {
         $comment->accept = true;
-        $comment->save();
+        $users = User::where('id', '!=', $comment->user_id)->get();
+        if ($comment->save()) {
+            Notification::send($users, new NewCommentNotify($comment->article, $comment->name));
+        };
         return redirect()->route('comments.index');
     }
     public function reject(Comment $comment) {
