@@ -5,7 +5,8 @@
 >      2. Наcтройка pusher: заполните поля PUSHER_APP_ID, PUSHER_APP_KEY, PUSHER_APP_SECRET (Берётся с сайта pusher.com)
 > 3. Прописать ```php artisan migrate``` в консоли
 > 4. Прописать ```composer install``` в консоли
-> Базы данных  в репозитории нет, поэтому её нужно заполнить через db:seed (в DatabaseSeeder есть частично закомментированные команды, которые можно применить)
+> 
+> Базы данных в репозитории нет, поэтому её нужно заполнить через db:seed (в DatabaseSeeder есть частично закомментированные команды, которые можно применить)
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
