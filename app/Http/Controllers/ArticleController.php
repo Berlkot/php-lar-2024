@@ -54,6 +54,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
+        if (isset($_GET['notify'])) auth()->user()->notifications->where('id', $_GET['notify'])->first()->markAsRead();
         $comments = Comment::where('article_id', $article->id)->where('accept', 1)->latest()->get();
         $author = \App\Models\User::findOrFail($article->user_id);
         return view('articles.show', ['article' => $article, 'author' => $author, 'comments' => $comments]);

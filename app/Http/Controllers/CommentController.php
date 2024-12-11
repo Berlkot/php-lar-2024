@@ -8,10 +8,9 @@ use Auth;
 use Gate;
 use Illuminate\Http\Request;
 use App\Models\Comment;
-
-use App\Mail\NewCommentMail;
-use Notification;
+use Illuminate\Support\Facades\Notification;
 use App\Models\User;
+use App\Mail\NewCommentMail;
 
 class CommentController extends Controller
 {
