@@ -29,22 +29,22 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/about">О нас <span class="sr-only">(current)</span></a>
+                    <li class="nav-item ">
+                        <a class="nav-link @active('about')" href="/about">О нас <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/articles">Статьи</a>
+                        <a class="nav-link @active('articles')" href="/articles">Статьи</a>
                     </li>
                     @can('create')
                         <li class="nav-item">
-                            <a class="nav-link" href="/articles/create">Создать статью</a>
+                            <a class="nav-link @active('articles/create')" href="/articles/create">Создать статью</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/comment/index">Комментарии</a>
+                            <a class="nav-link @active('comment/index')" href="/comment/index">Комментарии</a>
                         </li>
                     @endcan
                     <li class="nav-item">
-                        <a class="nav-link" href="/contacts">Контакты</a>
+                        <a class="nav-link @active('contacts')" href="/contacts">Контакты</a>
                     </li>
                     @auth
                         <li class="nav-item dropdown">
