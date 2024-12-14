@@ -38,6 +38,7 @@ Route::get('/contacts', function () {
 });
 
 Route::resource('articles', ArticleController::class)->middleware('auth:sanctum');
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show')->middleware('checkclick');
 
 
 Route::controller(CommentController::class)->prefix('/comment')->middleware('auth:sanctum')->group( function() {
