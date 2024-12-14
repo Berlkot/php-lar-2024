@@ -19,8 +19,7 @@ use App\Http\Controllers\CommentController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/auth/signup', action: [AuthController::class, 'signup']);
-Route::post('/auth/register', action: [AuthController::class, 'register']);
+
 Route::get('/', action: [MainController::class, 'index']);
 Route::get('/gallery/{img}/{name}', function ($img, $name) {
     return view('main.gallery', ['img' => $img, 'name' => $name]);
@@ -54,3 +53,5 @@ Route::controller(CommentController::class)->prefix('/comment')->middleware('aut
 Route::get('/auth/login', [AuthController::class, 'login'])->name('login');
 Route::post('/auth/authenticate', [AuthController::class, 'authenticate']);
 Route::get('/auth/logout', [AuthController::class, 'logout']);
+Route::get('/auth/signup', action: [AuthController::class, 'signup']);
+Route::post('/auth/register', action: [AuthController::class, 'register']);
