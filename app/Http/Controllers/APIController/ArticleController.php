@@ -72,13 +72,10 @@ class ArticleController extends Controller
                             ->where('accept', true)
                             ->get();
             $user = User::findOrFail($article->user_id);
-            return [
-                'comments'=>$comments,
-                'user'=>$user
-            ];
+            // return response()->json($result);
         });
-        // return view('articles.show', ['article'=>$article, 'author'=>$result['user'], 'comments'=>$result['comments']]);
-        return response()->json($result);
+        return response()->json(['article'=>$article, 'author'=>$result['user'], 'comments'=>$result['comments']]);
+        // return response()->json($article);
     }
 
     /**
